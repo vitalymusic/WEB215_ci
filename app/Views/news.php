@@ -7,12 +7,7 @@
     <title><?=$title?></title>
 
     <script>
-
-
-
-
           async function loadComments(id,element){
-              
                 let result = await fetch(`<?=base_url("get_news_comments")?>/${id}`);
                 let data = await result.json();
                     if(data.answer==true){
@@ -31,17 +26,40 @@
                             <h5>No comments yet...</h5>
                         </div>
                     `;
-            }
+                }
             }
 
 
             document.addEventListener("DOMContentLoaded",()=>{
-                     document.querySelectorAll(".comments").forEach((element,number)=>{
-                            
+
+                     document.querySelectorAll(".comments").forEach((element,number)=>{     
                         let id = element.dataset.id;
                         loadComments(id,element);
-                    })    
+                    })  
+                    
+                 
+                    
+                    document.querySelector('#comment_form').onsubmit = (e)=>{
+                        e.preventDefault();
+                        formData = new FormData('#comment_form');
+
+                            async function(){
+                                let result = await fetch(`<?=base_url("add_comment")?>`,{
+                                      method: "POST",
+                                      body:  formData
+                                });
+
+                            }
+                    }
+
+
+
+
             })
+
+
+
+
            
     </script>
 </head>
@@ -62,7 +80,7 @@
                    
                 </div>
                 <div class="form">
-                    <form>
+                    <form id="comment_form">
                         <input type="hidden" name="news_id" value="<?=$item->id?>">
                         <input type="text" name="name" id="" placeholder="Your name">
                         <input type="email" name="email" id="" placeholder="Your email">
