@@ -20,7 +20,9 @@
                 <h3><?=$item->news_title ?></h3>
                 <p><?=$item->news_content ?></p>
                 <div class="comments">
-
+                   <script>
+                       loadComments(<?=$item->id?>) 
+                   </script>
                 </div>
                 <div class="form">
                     <form>
@@ -34,5 +36,12 @@
             </div>
     <?php } ?>
     
+
+    <script>
+          function loadComments(id){
+                console.log(id);
+                
+            }
+    </script>
 </body>
 </html>

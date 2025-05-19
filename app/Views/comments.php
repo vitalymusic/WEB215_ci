@@ -4,7 +4,8 @@
         <h5><?=$comment->name?></h5>
         <p><?=$comment->email?></p>
         <p><?=$comment->comment?></p>
-
+        
+        
     <?php endforeach;?>    
 
 </div>

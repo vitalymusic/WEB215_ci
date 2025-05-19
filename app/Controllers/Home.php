@@ -48,17 +48,12 @@ class Home extends BaseController
 
 
      public function get_news_comments($id){
-             $db = db_connect();
-       
+        $db = db_connect();
         $builder = $db->table('news_comments');
-         
         $query = $builder->where('news_id',$id)->get();
-
         foreach ($query->getResult() as $row) {
-            
                 $data["comments"][] = $row;
         }
-
         if(isset( $data["comments"])){
             $data["answer"]=true;
             return $this->response->setJSON($data);
