@@ -64,4 +64,12 @@ class Home extends BaseController
          
      }
 
+
+
+     public function addComment(){
+        $data = $request->getPost();
+        return $this->response->setJSON($data);
+
+     }
+
 }

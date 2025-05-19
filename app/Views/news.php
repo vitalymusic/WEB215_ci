@@ -39,18 +39,25 @@
                     
                  
                     
-                    document.querySelector('#comment_form').onsubmit = (e)=>{
-                        e.preventDefault();
-                        formData = new FormData('#comment_form');
+                   let forms = document.querySelectorAll('.comment_form');
+                    
+                   for(form of forms){
+                        console.log(form);
+                            form.onsubmit = (e)=>{
+                            e.preventDefault();
+                            data = new FormData(form);
+                            sendData();
+                        }
+                    }
 
-                            async function(){
+                   
+
+                    async function sendData(){
                                 let result = await fetch(`<?=base_url("add_comment")?>`,{
                                       method: "POST",
-                                      body:  formData
+                                      body:  data
                                 });
-
                             }
-                    }
 
 
 
@@ -80,7 +87,7 @@
                    
                 </div>
                 <div class="form">
-                    <form id="comment_form">
+                    <form class="comment_form">
                         <input type="hidden" name="news_id" value="<?=$item->id?>">
                         <input type="text" name="name" id="" placeholder="Your name">
                         <input type="email" name="email" id="" placeholder="Your email">
