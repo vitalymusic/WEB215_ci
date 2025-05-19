@@ -65,10 +65,25 @@ class Home extends BaseController
      }
 
 
-
      public function addComment(){
-        $data = $request->getPost();
+        $request = service('request');
+        $db = db_connect();
+        $builder = $db->table('news_comments');
+        $input = $request->getPost();
+
+
+        $data = [
+            'name'       => esc($input["name"]),
+            'email'        => esc($input["email"]),
+            'comment'        => esc($input["comment"]),
+            'news_id' => esc($input["news_id"])
+];
+    if($builder->insert($data)){
+            $data = [
+            'success' => true,
+            ];
         return $this->response->setJSON($data);
+    }
 
      }
 

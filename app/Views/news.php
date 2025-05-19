@@ -14,9 +14,9 @@
                     for (comments of data.comments){
                     element.innerHTML +=`
                         <div class="comment">
-                            <h5>${comments.name}</h5>
-                            <h5>${comments.email}</h5>
-                            <p>${comments.comment}</p>
+                            <p>Name: ${comments.name}</p>
+                            <p>Email: ${comments.email}</p>
+                            <p>Comment: <br> ${comments.comment}</p>
                         </div>
                     `;
                     }
@@ -42,21 +42,29 @@
                    let forms = document.querySelectorAll('.comment_form');
                     
                    for(form of forms){
-                        console.log(form);
+                       
                             form.onsubmit = (e)=>{
                             e.preventDefault();
-                            data = new FormData(form);
-                            sendData();
+                            //console.log(e.target);
+                            data = new FormData(e.target);
+                            sendData(e.target);
                         }
                     }
 
                    
 
-                    async function sendData(){
+                    async function sendData(elem){
                                 let result = await fetch(`<?=base_url("add_comment")?>`,{
                                       method: "POST",
                                       body:  data
                                 });
+                                let answer = await result.json();
+
+                                if(answer.success==true){
+                                    elem.reset();
+                                    window.location.replace("<?=base_url()?>")
+
+                                }
                             }
 
 
