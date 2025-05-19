@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
     <title><?=$title?></title>
+
+    <script>
+          function loadComments(id){
+                console.log(id);
+                
+            }
+    </script>
 </head>
 <body>
     <?php include("menu.php") ?>
@@ -19,7 +26,7 @@
             <div class="content">
                 <h3><?=$item->news_title ?></h3>
                 <p><?=$item->news_content ?></p>
-                <div class="comments">
+                <div class="comments" >
                    <script>
                        loadComments(<?=$item->id?>) 
                    </script>
@@ -37,11 +44,6 @@
     <?php } ?>
     
 
-    <script>
-          function loadComments(id){
-                console.log(id);
-                
-            }
-    </script>
+    
 </body>
 </html>
