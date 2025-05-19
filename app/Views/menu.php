@@ -1,6 +1,5 @@
 <nav>
-    <a href="/">Main</a>
-    <a href="/news">News</a>
-    <a href="/contacts">Contacts</a>
- 
+    <a href="<?=base_url()?>">Main</a>
+    <a href="<?=base_url('/news')?>">News</a>
+    <a href="<?=base_url('/contacts')?>">Contacts</a>
 </nav>

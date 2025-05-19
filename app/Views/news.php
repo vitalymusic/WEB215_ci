@@ -11,6 +11,7 @@
                 let result = await fetch(`<?=base_url("get_news_comments")?>/${id}`);
                 let data = await result.json();
                     if(data.answer==true){
+                        element.innerHTML = "";
                     for (comments of data.comments){
                     element.innerHTML +=`
                         <div class="comment">
@@ -31,14 +32,17 @@
 
 
             document.addEventListener("DOMContentLoaded",()=>{
-
-                     document.querySelectorAll(".comments").forEach((element,number)=>{     
+                    function reload(){
+                         document.querySelectorAll(".comments").forEach((element,number)=>{     
                         let id = element.dataset.id;
                         loadComments(id,element);
-                    })  
+                     }) 
+                    }
+
+                    
+                    reload();
                     
                  
-                    
                    let forms = document.querySelectorAll('.comment_form');
                     
                    for(form of forms){
@@ -62,14 +66,12 @@
 
                                 if(answer.success==true){
                                     elem.reset();
-                                    window.location.replace("<?=base_url()?>")
+                                    //window.location.replace("<?base_url()?>")
+                                    reload();
+
 
                                 }
                             }
-
-
-
-
             })
 
 
