@@ -22,7 +22,7 @@
                     `;
                     }
                 }else{
-                     element.innerHTML +=`
+                     element.innerHTML =`
                         <div class="comment">
                             <h5>No comments yet...</h5>
                         </div>
