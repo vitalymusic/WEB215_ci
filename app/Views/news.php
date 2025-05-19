@@ -7,10 +7,42 @@
     <title><?=$title?></title>
 
     <script>
-          function loadComments(id){
-                console.log(id);
-                
+
+
+
+
+          async function loadComments(id,element){
+              
+                let result = await fetch(`<?=base_url("get_news_comments")?>/${id}`);
+                let data = await result.json();
+                    if(data.answer==true){
+                    for (comments of data.comments){
+                    element.innerHTML +=`
+                        <div class="comment">
+                            <h5>${comments.name}</h5>
+                            <h5>${comments.email}</h5>
+                            <p>${comments.comment}</p>
+                        </div>
+                    `;
+                    }
+                }else{
+                     element.innerHTML +=`
+                        <div class="comment">
+                            <h5>No comments yet...</h5>
+                        </div>
+                    `;
             }
+            }
+
+
+            document.addEventListener("DOMContentLoaded",()=>{
+                     document.querySelectorAll(".comments").forEach((element,number)=>{
+                            
+                        let id = element.dataset.id;
+                        loadComments(id,element);
+                    })    
+            })
+           
     </script>
 </head>
 <body>
@@ -26,10 +58,8 @@
             <div class="content">
                 <h3><?=$item->news_title ?></h3>
                 <p><?=$item->news_content ?></p>
-                <div class="comments" >
-                   <script>
-                       loadComments(<?=$item->id?>) 
-                   </script>
+                <div class="comments" data-id="<?=$item->id?>">
+                   
                 </div>
                 <div class="form">
                     <form>
