@@ -7,7 +7,7 @@
 
     <div class="container">
         <h1>Add news</h1>
-        <form action="<?= base_url('admin/news/add') ?>" method="post" id="newsForm">
+        <form action="<?= base_url('news/add') ?>" method="post" id="newsForm">
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">News name</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1" name="news_name">

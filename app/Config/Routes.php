@@ -20,5 +20,4 @@ $routes->post('/add_comment', 'Home::addComment');
 // Admin panel Routes
 $routes->get('/admin', 'Admin::index');
 $routes->get('/add_news', 'Admin::add_news');
-
-
+$routes->post('/news/add', 'Admin::add_news_db');
