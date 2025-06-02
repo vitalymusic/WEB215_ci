@@ -14,3 +14,11 @@ $routes->get('/get_news_comments/(:num)', 'Home::get_news_comments/$1');
 $routes->post('/addUser', 'Home::addUser');
 $routes->post('/add_comment', 'Home::addComment');
 
+
+
+
+// Admin panel Routes
+$routes->get('/admin', 'Admin::index');
+$routes->get('/add_news', 'Admin::add_news');
+
+

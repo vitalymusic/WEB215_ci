@@ -4,7 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
-    <title><?=$title?></title>
+    <style>
+        .comment{
+            background:var(--accent-bg);
+            padding:10px 20px;
+            margin: 10px 0px;
+            
+            transform:scale(.95);
+        }
+
+        .form{
+            transform:scale(.85);
+        }
+    </style>
+
+    <title><?=esc($title)?></title>
 
     <script>
           async function loadComments(id,element){
@@ -15,8 +29,7 @@
                     for (comments of data.comments){
                     element.innerHTML +=`
                         <div class="comment">
-                            <p>Name: ${comments.name}</p>
-                            <p>Email: ${comments.email}</p>
+                            <p>Name: <b>${comments.name}</b> <br>Email: ${comments.email}</p>
                             <p>Comment: <br> ${comments.comment}</p>
                         </div>
                     `;
