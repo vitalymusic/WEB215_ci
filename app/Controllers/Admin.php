@@ -33,13 +33,13 @@ class Admin extends BaseController
     }
      public function add_news_db(){
               $input = $this->request->getPost();
-              $builder = $db->table('news');  
+              $builder = $this->db->table('news');  
                $data = [
             'news_title'       => esc($input["news_name"]),
             'news_content'        => esc($input["news_content"]),
             ];
         if($builder->insert($data)){
-        return redirect()->to('admin/index');
+        return redirect()->to('admin');
     }
 
     }
